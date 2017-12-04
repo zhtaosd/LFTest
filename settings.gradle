@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':longfor-annotations', ':longfor-compiler', ':longfor-core', ':longfor-ec', ':example'
