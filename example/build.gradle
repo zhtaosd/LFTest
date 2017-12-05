@@ -35,4 +35,5 @@ dependencies {
 
     implementation project(':longfor-ec')
     annotationProcessor project(':longfor-compiler')
+    compile project(path: ':longfor-core')
 }

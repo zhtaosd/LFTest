@@ -41,4 +41,11 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.3.0'
+
+    //Fragment依赖
+    compile 'me.yokeyword:fragmentation:1.0.3'
+    compile 'me.yokeyword:fragmentation-swipeback:1.0.3'
+    //ButterKnife依赖
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }
