@@ -16,7 +16,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * Created by zhanghaitao1 on 2017/12/5.
  */
 
-public class RestCreator {
+public final class RestCreator {
     /**
      * 参数容器
      */
@@ -65,6 +65,10 @@ public class RestCreator {
     }
 
     public static RestService getRestService(){
+        String a = "str";
+        OkHttpClient okHttpClient = OkHttpHolder.OK_HTTP_CLIENT;
+        Retrofit retrofit = RetrofitHolder.RETROFIT_CLIENT;
+        RestService service = RestServiceHolder.RESTSERVICE;
         return RestServiceHolder.RESTSERVICE;
     }
 }
