@@ -52,7 +52,7 @@ public final class RestCreator {
     private static final class RetrofitHolder{
         private static final String BASE_URL = LongFor.getConfiguration(ConfigKeys.API_HOST);
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder().
-                baseUrl(BASE_URL).
+                baseUrl("https://www.baidu.com/").
                 client(OkHttpHolder.OK_HTTP_CLIENT).
                 addConverterFactory(ScalarsConverterFactory.create()).
                 build();

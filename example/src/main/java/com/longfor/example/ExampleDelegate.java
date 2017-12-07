@@ -50,6 +50,7 @@ public class ExampleDelegate extends LongForDelegate {
 
                     }
                 })
+                .loader(getContext())
                 .build()
                 .get();
     }

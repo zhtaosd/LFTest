@@ -6,6 +6,7 @@ import com.longfor.core.net.callback.IError;
 import com.longfor.core.net.callback.IFailure;
 import com.longfor.core.net.callback.IRequest;
 import com.longfor.core.net.callback.ISuccess;
+import com.longfor.core.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.WeakHashMap;
@@ -30,6 +31,7 @@ public class RestClientBuilder {
     private RequestBody mRequestbody = null;
     private File mFile = null;
     private Context mContext = null;
+    private LoaderStyle mLoaderStyle = null;
 
     RestClientBuilder() {
     }
@@ -99,6 +101,18 @@ public class RestClientBuilder {
         return this;
     }
 
+    public final RestClientBuilder loader(Context context) {
+        this.mContext = context;
+        this.mLoaderStyle = LoaderStyle.BallSpinFadeLoaderIndicator;
+        return this;
+    }
+
+    public final RestClientBuilder loader(Context context, LoaderStyle style) {
+        this.mContext = context;
+        this.mLoaderStyle = style;
+        return this;
+    }
+
     public final RestClient build() {
         return new RestClient(
                 mUrl,
@@ -111,6 +125,7 @@ public class RestClientBuilder {
                 mError,
                 mRequestbody,
                 mFile,
-                mContext);
+                mContext,
+                mLoaderStyle);
     }
 }

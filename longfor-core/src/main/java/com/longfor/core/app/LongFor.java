@@ -1,8 +1,8 @@
 package com.longfor.core.app;
 
 import android.content.Context;
+import android.os.Handler;
 
-import java.util.logging.Handler;
 
 /**
  * Created by zhanghaitao1 on 2017/12/4.

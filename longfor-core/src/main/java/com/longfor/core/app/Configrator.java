@@ -40,8 +40,8 @@ public final class Configrator {
     }
 
     public final void configure() {
-        initIcons();
         LONGFOR_CONFIGS.put(ConfigKeys.CONFIG_READY,true);
+        initIcons();
     }
 
     public final Configrator withApiHost(String host) {
@@ -109,9 +109,9 @@ public final class Configrator {
     final <T> T getConfiguration(Object key) {
         checkConfiguration();
         final Object value = LONGFOR_CONFIGS.get(key);
-        if (value == null) {
-            throw new NullPointerException(key.toString() + " IS NULL");
-        }
+//        if (value == null) {
+//            throw new NullPointerException(key.toString() + " IS NULL");
+//        }
         return (T) LONGFOR_CONFIGS.get(key);
     }
 }
