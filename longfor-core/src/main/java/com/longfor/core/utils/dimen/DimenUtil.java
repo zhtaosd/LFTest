@@ -1,4 +1,4 @@
-package com.longfor.core.utils;
+package com.longfor.core.utils.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
