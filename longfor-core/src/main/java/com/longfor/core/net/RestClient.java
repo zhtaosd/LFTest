@@ -14,6 +14,8 @@ import com.longfor.core.ui.loader.LongforLoader;
 import java.io.File;
 import java.util.WeakHashMap;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,6 +92,11 @@ public class RestClient {
             case DELETE:
                 call = service.delete(URL, PARAMS);
                 break;
+            case UPLOAD:
+                final RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()),FILE);
+                final MultipartBody.Part body = MultipartBody.Part.createFormData("file",FILE.getName(),requestBody);
+                call = service.upload(URL,body);
+                break;
             default:
                 break;
         }
@@ -107,11 +114,25 @@ public class RestClient {
     }
 
     public final void post() {
-        request(HttpMethod.POST);
+        if(REQUESTBODY==null){
+            request(HttpMethod.POST);
+        }else{
+            if(!PARAMS.isEmpty()){
+                throw new RuntimeException("params must be null");
+            }
+            request(HttpMethod.POST_RAW);
+        }
     }
 
     public final void put() {
-        request(HttpMethod.PUT);
+        if(REQUESTBODY==null){
+            request(HttpMethod.PUT);
+        }else{
+            if(!PARAMS.isEmpty()){
+                throw new RuntimeException("params must be null");
+            }
+            request(HttpMethod.PUT_RAW);
+        }
     }
 
     public final void delete() {
