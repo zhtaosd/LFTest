@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.longfor.core.app.LongFor;
+import com.longfor.core.net.interceptors.DebugInterceptor;
 
 
 /**
@@ -21,6 +22,7 @@ public class ExampleApp extends Application {
                 .withWeChatAppId("你的微信AppKey")
                 .withWeChatAppSecret("你的微信AppSecret")
                 .withJavascriptInterface("latte")
+                .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
     }
 }
