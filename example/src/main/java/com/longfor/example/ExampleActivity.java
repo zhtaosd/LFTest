@@ -2,6 +2,8 @@ package com.longfor.example;
 
 import com.longfor.core.activities.ProxyActivity;
 import com.longfor.core.delegates.LongForDelegate;
+import com.longfor.ec.launcher.LauncherDelegate;
+
 /**
  * Created by zhanghaitao1 on 2017/12/5.
  */
@@ -9,6 +11,6 @@ import com.longfor.core.delegates.LongForDelegate;
 public class ExampleActivity extends ProxyActivity {
     @Override
     public LongForDelegate setRootDelegate() {
-        return new ExampleDelegate();
+        return new LauncherDelegate();
     }
 }

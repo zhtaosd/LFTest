@@ -15,7 +15,7 @@ public class BaseTimerTask extends TimerTask{
 
     @Override
     public void run() {
-        if(mITimeListener==null){
+        if(mITimeListener!=null){
             mITimeListener.onTimer();
         }
     }
