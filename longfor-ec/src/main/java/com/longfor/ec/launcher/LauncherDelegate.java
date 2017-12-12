@@ -7,11 +7,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.longfor.core.app.LongFor;
 import com.longfor.core.delegates.LongForDelegate;
+import com.longfor.core.utils.storage.LongForPreference;
 import com.longfor.core.utils.timer.BaseTimerTask;
 import com.longfor.core.utils.timer.ITimeListener;
 import com.longfor.ec.R;
 import com.longfor.ec.R2;
+import com.longfor.ui.launcher.ILauncherListener;
+import com.longfor.ui.launcher.ScrollLauncherTag;
 
 import java.text.MessageFormat;
 import java.util.Timer;
@@ -30,12 +34,14 @@ public class LauncherDelegate extends LongForDelegate implements ITimeListener {
 
     private Timer mTimer = null;
     private int mCount = 5;
+    private ILauncherListener mILauncherListener = null;
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
         if (mTimer != null) {
             mTimer.cancel();
             mTimer = null;
+            checkIsShowScroll();
         }
     }
 
@@ -72,10 +78,20 @@ public class LauncherDelegate extends LongForDelegate implements ITimeListener {
                         if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
+                            checkIsShowScroll();
                         }
                     }
                 }
             }
         });
+    }
+
+    //判断是否显示滑动页
+    private void checkIsShowScroll(){
+        if(!LongForPreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
+            getSupportDelegate().start(new LauncherScrollDelegate(),SINGLETASK);
+        }else {
+
+        }
     }
 }

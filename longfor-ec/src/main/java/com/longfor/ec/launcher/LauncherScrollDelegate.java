@@ -8,8 +8,10 @@ import android.view.View;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.longfor.core.delegates.LongForDelegate;
+import com.longfor.core.utils.storage.LongForPreference;
 import com.longfor.ec.R;
 import com.longfor.ui.launcher.LauncherHolderCreator;
+import com.longfor.ui.launcher.ScrollLauncherTag;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,8 @@ public class LauncherScrollDelegate extends LongForDelegate implements OnItemCli
 
     @Override
     public void onItemClick(int position) {
-
+        if(position==INTEGERS.size()-1){
+            LongForPreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(),true);
+        }
     }
 }
