@@ -38,7 +38,7 @@ public class SignInDelegate extends LongForDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-
+                            SignHandler.onSignIn(response);
                         }
                     })
                     .build()

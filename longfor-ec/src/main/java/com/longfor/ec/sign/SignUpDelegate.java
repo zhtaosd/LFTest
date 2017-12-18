@@ -45,7 +45,7 @@ public class SignUpDelegate extends LongForDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-
+                            SignHandler.onSignUp(response);
                         }
                     })
                     .build()
