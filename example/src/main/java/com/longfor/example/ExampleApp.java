@@ -5,6 +5,7 @@ import android.app.Application;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.longfor.core.app.LongFor;
 import com.longfor.core.net.interceptors.DebugInterceptor;
+import com.longfor.ec.database.DatabaseManager;
 
 
 /**
@@ -24,5 +25,7 @@ public class ExampleApp extends Application {
                 .withJavascriptInterface("latte")
                 .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
+
+        DatabaseManager.getInstance().init(this);
     }
 }
