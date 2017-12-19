@@ -35,5 +35,4 @@ dependencies {
     implementation project(':longfor-core')
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     implementation project(':longfor_ui')
-    compile 'org.greenrobot:greendao:3.0.1'
 }
