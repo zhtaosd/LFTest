@@ -81,6 +81,8 @@ public class RestClientBuilder {
         return this;
     }
 
+
+
     public final RestClientBuilder onRequest(IRequest iRequest) {
         this.mRequest = iRequest;
         return this;

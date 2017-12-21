@@ -65,10 +65,6 @@ public final class RestCreator {
     }
 
     public static RestService getRestService(){
-        String a = "str";
-        OkHttpClient okHttpClient = OkHttpHolder.OK_HTTP_CLIENT;
-        Retrofit retrofit = RetrofitHolder.RETROFIT_CLIENT;
-        RestService service = RestServiceHolder.RESTSERVICE;
         return RestServiceHolder.RESTSERVICE;
     }
 }
