@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.longfor.core.app.AccountManager;
+import com.longfor.core.app.IUserChecker;
 import com.longfor.core.app.LongFor;
 import com.longfor.core.delegates.LongForDelegate;
 import com.longfor.core.utils.storage.LongForPreference;
@@ -15,6 +17,7 @@ import com.longfor.core.utils.timer.ITimeListener;
 import com.longfor.ec.R;
 import com.longfor.ec.R2;
 import com.longfor.ui.launcher.ILauncherListener;
+import com.longfor.ui.launcher.OnLauncherFinishTag;
 import com.longfor.ui.launcher.ScrollLauncherTag;
 
 import java.text.MessageFormat;
@@ -54,6 +57,7 @@ public class LauncherDelegate extends LongForDelegate implements ITimeListener {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+         mILauncherListener = (ILauncherListener) activity;
     }
 
     @Override
@@ -91,7 +95,17 @@ public class LauncherDelegate extends LongForDelegate implements ITimeListener {
         if(!LongForPreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
             getSupportDelegate().start(new LauncherScrollDelegate(),SINGLETASK);
         }else {
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                }
 
+                @Override
+                public void onNotSignIn() {
+                    mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                }
+            });
         }
     }
 }

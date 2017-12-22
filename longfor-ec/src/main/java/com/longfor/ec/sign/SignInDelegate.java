@@ -27,6 +27,8 @@ public class SignInDelegate extends LongForDelegate {
     @BindView(R2.id.edit_sign_in_password)
     TextInputEditText mPassword = null;
 
+    private ISignListener mISignListener = null;
+
 
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
@@ -38,7 +40,7 @@ public class SignInDelegate extends LongForDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            SignHandler.onSignIn(response);
+                            SignHandler.onSignIn(response,mISignListener);
                         }
                     })
                     .build()

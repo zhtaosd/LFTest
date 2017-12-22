@@ -1,5 +1,7 @@
 package com.longfor.ec.sign;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,7 +22,7 @@ import butterknife.OnClick;
  * Created by zhanghaitao1 on 2017/12/15.
  */
 
-public class SignUpDelegate extends LongForDelegate {
+public class SignUpDelegate extends LongForDelegate implements ISignListener{
 
     @BindView(R2.id.edit_sign_up_name)
     TextInputEditText mName = null;
@@ -32,6 +34,16 @@ public class SignUpDelegate extends LongForDelegate {
     TextInputEditText mPassword = null;
     @BindView(R2.id.edit_sign_up_re_password)
     TextInputEditText mRePassword = null;
+
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof ISignListener){
+            mISignListener = (ISignListener) activity;
+        }
+    }
 
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
@@ -45,7 +57,7 @@ public class SignUpDelegate extends LongForDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            SignHandler.onSignUp(response);
+                            SignHandler.onSignUp(response,mISignListener);
                         }
                     })
                     .build()
@@ -107,6 +119,16 @@ public class SignUpDelegate extends LongForDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+
+    }
+
+    @Override
+    public void onSignInSuccess() {
+
+    }
+
+    @Override
+    public void onSignUpSuccess() {
 
     }
 }
