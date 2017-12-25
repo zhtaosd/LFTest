@@ -36,4 +36,5 @@ dependencies {
     annotationProcessor project(':longfor-compiler')
     compile project(path: ':longfor-core')
     implementation project(':longfor_ui')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }

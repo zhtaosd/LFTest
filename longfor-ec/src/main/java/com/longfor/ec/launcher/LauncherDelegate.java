@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.longfor.core.app.AccountManager;
 import com.longfor.core.app.IUserChecker;
-import com.longfor.core.app.LongFor;
 import com.longfor.core.delegates.LongForDelegate;
 import com.longfor.core.utils.storage.LongForPreference;
 import com.longfor.core.utils.timer.BaseTimerTask;
