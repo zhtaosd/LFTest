@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
  */
 
 public class ECBottomDelegate extends BaseBottomDelegate {
+
     @Override
     public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder) {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();

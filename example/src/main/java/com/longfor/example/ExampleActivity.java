@@ -7,17 +7,21 @@ import android.widget.Toast;
 
 import com.longfor.core.activities.ProxyActivity;
 import com.longfor.core.delegates.LongForDelegate;
+import com.longfor.core.delegates.bottom.BottomItemDelegate;
 import com.longfor.ec.launcher.LauncherDelegate;
+import com.longfor.ec.main.ECBottomDelegate;
 import com.longfor.ec.sign.ISignListener;
 import com.longfor.ec.sign.SignInDelegate;
 import com.longfor.ui.launcher.ILauncherListener;
 import com.longfor.ui.launcher.OnLauncherFinishTag;
+import com.longfor.core.delegates.bottom.BackHandledInterface;
 
 /**
  * Created by zhanghaitao1 on 2017/12/5.
  */
 
-public class ExampleActivity extends ProxyActivity implements ISignListener,ILauncherListener{
+public class ExampleActivity extends ProxyActivity implements ISignListener,ILauncherListener,BackHandledInterface{
+    private BottomItemDelegate mPlaceholderFragment;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +31,12 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
 
     @Override
     public LongForDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new ECBottomDelegate();
+    }
+
+    @Override
+    public void setSelectedFragment(BottomItemDelegate selectedFragment) {
+        this.mPlaceholderFragment = selectedFragment;
     }
 
     @Override
@@ -49,6 +58,16 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
             case NOT_SIGNED:
                 getSupportDelegate().startWithPop(new SignInDelegate());
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mPlaceholderFragment == null|| mPlaceholderFragment.isVisible()||!mPlaceholderFragment.onBackPressed()) {
+            //处理
+        } else {
+            //处理
+            super.onBackPressed();
         }
     }
 }

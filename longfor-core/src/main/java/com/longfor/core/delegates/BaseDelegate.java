@@ -44,6 +44,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     }
 
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -80,7 +81,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         } else {
             throw new ClassCastException("type of setLayout() must be int or View!");
         }
-//        mUnbinder = ButterKnife.bind(this, rootView);
+        mUnbinder = ButterKnife.bind(this, rootView);
         mRootView = rootView;
         onBindView(savedInstanceState, rootView);
         return rootView;

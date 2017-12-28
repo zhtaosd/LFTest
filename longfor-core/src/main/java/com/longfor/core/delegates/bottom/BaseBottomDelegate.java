@@ -88,10 +88,9 @@ public abstract class BaseBottomDelegate extends LongForDelegate implements View
                 itemICon.setTextColor(mClickedColor);
                 itemTitle.setTextColor(mClickedColor);
             }
-
-            final ISupportFragment[] delegateArray  = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
-            getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delegateArray);
         }
+        final ISupportFragment[] delegateArray  = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
+        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delegateArray);
     }
 
     private void resetColor(){
