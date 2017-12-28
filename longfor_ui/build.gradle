@@ -35,4 +35,9 @@ dependencies {
     //Banner依赖
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+
+    implementation project(':longfor-core')
+
+    //RecyclerView依赖
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
 }
