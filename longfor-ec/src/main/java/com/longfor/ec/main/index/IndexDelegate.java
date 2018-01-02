@@ -61,6 +61,6 @@ public class IndexDelegate extends BottomItemDelegate {
     }
 
     public void test(){
-//       getParentDelegate().start(new ECBottomDelegate());
+       getParentDelegate().start(new ECBottomDelegate());
     }
 }
