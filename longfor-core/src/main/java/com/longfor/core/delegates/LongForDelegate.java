@@ -6,4 +6,8 @@ package com.longfor.core.delegates;
 
 public abstract class LongForDelegate extends PermissionCheckerDelegate {
 
+    @SuppressWarnings("unchecked")
+    public <T extends LongForDelegate> T getParentDelegate() {
+        return (T) getParentFragment();
+    }
 }

@@ -13,6 +13,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.longfor.core.delegates.bottom.BottomItemDelegate;
 import com.longfor.ec.R;
 import com.longfor.ec.R2;
+import com.longfor.ec.main.ECBottomDelegate;
 import com.longfor.ui.refresh.RefreshHandler;
 
 import butterknife.BindView;
@@ -57,5 +58,9 @@ public class IndexDelegate extends BottomItemDelegate {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
         mRefreshLayout.setProgressViewOffset(true,120,300);
+    }
+
+    public void test(){
+//       getParentDelegate().start(new ECBottomDelegate());
     }
 }

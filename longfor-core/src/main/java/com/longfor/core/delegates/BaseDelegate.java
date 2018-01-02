@@ -211,4 +211,12 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     public boolean onBackPressedSupport() {
         return DELEGATE.onBackPressedSupport();
     }
+
+    public void start(ISupportFragment toFragment) {
+        DELEGATE.start(toFragment);
+    }
+
+    public void start(final ISupportFragment toFragment, @LaunchMode int launchMode) {
+        DELEGATE.start(toFragment, launchMode);
+    }
 }
