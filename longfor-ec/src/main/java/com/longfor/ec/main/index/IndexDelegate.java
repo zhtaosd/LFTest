@@ -1,10 +1,13 @@
 package com.longfor.ec.main.index;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,6 +17,7 @@ import com.longfor.core.delegates.bottom.BottomItemDelegate;
 import com.longfor.ec.R;
 import com.longfor.ec.R2;
 import com.longfor.ec.main.ECBottomDelegate;
+import com.longfor.ui.recycler.BaseDecoration;
 import com.longfor.ui.refresh.RefreshHandler;
 
 import butterknife.BindView;
@@ -44,13 +48,26 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-        mRefreshHandler = new RefreshHandler(mRefreshLayout);
+        mRefreshHandler = RefreshHandler.creat(mRefreshLayout,mRecyclerView,new IndexDataConverter());
     }
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
+        initRecyclerView();
+        mRefreshHandler.firstPage("index.php");
+    }
+
+    private void initRecyclerView() {
+        final GridLayoutManager manager = new GridLayoutManager(getContext(),4);
+        final Context context =getContext();
+        mRecyclerView.setLayoutManager(manager);
+        if(context!=null){
+            mRecyclerView.addItemDecoration(BaseDecoration.creat(ContextCompat.getColor(context,R.color.app_background),5));
+        }
+        final ECBottomDelegate ecBottomDelegate = getParentDelegate();
+//        mRecyclerView.addOnItemTouchListener();
     }
 
     private void initRefreshLayout() {

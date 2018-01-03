@@ -63,4 +63,6 @@ dependencies {
     //数据库依赖
     compile 'org.greenrobot:greendao-generator:3.2.2'
     compile 'org.greenrobot:greendao:3.2.2'
+    //沉浸式状态栏
+    compile 'com.github.niorgai:StatusBarCompat:2.1.4'
 }
