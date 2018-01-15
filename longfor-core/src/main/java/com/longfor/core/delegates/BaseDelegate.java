@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
 import com.longfor.core.activities.ProxyActivity;
 
@@ -56,6 +57,11 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DELEGATE.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return DELEGATE.onCreateAnimation(transit, enter, nextAnim);
     }
 
     @Override
@@ -120,9 +126,9 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         DELEGATE.onDestroyView();
         super.onDestroyView();
 
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
+//        if (mUnbinder != null) {
+//            mUnbinder.unbind();
+//        }
     }
     @Override
     public void onDestroy() {
