@@ -51,9 +51,23 @@ public abstract class WebDelegate extends LongForDelegate implements IWebViewIni
                 mWebView.setWebViewClient(initializer.initWebViewClient());
                 mWebView.setWebChromeClient(initializer.initWebChromeClient());
                 final String name = LongFor.getConfiguration(ConfigKeys.JAVASCRIPT_INTERFACE);
-//                mWebView.addJavascriptInterface();
+                mWebView.addJavascriptInterface(LongForWebInterface.creat(this),name);
+                mIsWebViewAvailable = true;
+            }else{
+                throw new NullPointerException("Initializer is null!");
             }
         }
+    }
+
+    public void setTopDelegate(LongForDelegate delegate){
+        this.mTopDelegate = delegate;
+    }
+
+    public LongForDelegate getTopDelegate(){
+        if(mTopDelegate == null){
+            mTopDelegate = this;
+        }
+        return mTopDelegate;
     }
 
     public WebView getWebView() {
@@ -61,5 +75,44 @@ public abstract class WebDelegate extends LongForDelegate implements IWebViewIni
             throw new NullPointerException("WebView IS NULL!");
         }
         return mIsWebViewAvailable ? mWebView : null;
+    }
+
+    public String getUrl() {
+        if (mUrl == null) {
+            throw new NullPointerException("WebView IS NULL!");
+        }
+        return mUrl;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(mWebView != null){
+            mWebView.onPause();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(mWebView != null){
+            mWebView.onResume();
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mIsWebViewAvailable = false;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mWebView!=null){
+            mWebView.removeAllViews();
+            mWebView.destroy();
+            mWebView = null;
+        }
     }
 }
