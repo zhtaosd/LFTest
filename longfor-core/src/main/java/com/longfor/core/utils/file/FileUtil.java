@@ -1,6 +1,11 @@
 package com.longfor.core.utils.file;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 
 import com.longfor.core.app.LongFor;
 
@@ -22,6 +27,9 @@ import java.util.Locale;
  */
 
 public class FileUtil {
+    //系统相机目录
+    public static final String CAMERA_PHOTO_DIR =
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath() + "/Camera/";
 
     //格式化的模板
     private static final String TIME_FORMAT = "_yyyyMMdd_HHmmss";
@@ -193,5 +201,27 @@ public class FileUtil {
             }
         }
         return stringBuilder.toString();
+    }
+    public static String getRealFilePath(final Context context, final Uri uri) {
+        if (null == uri) return null;
+        final String scheme = uri.getScheme();
+        String data = null;
+        if (scheme == null)
+            data = uri.getPath();
+        else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
+            data = uri.getPath();
+        } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
+            final Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore.Images.ImageColumns.DATA}, null, null, null);
+            if (null != cursor) {
+                if (cursor.moveToFirst()) {
+                    final int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                    if (index > -1) {
+                        data = cursor.getString(index);
+                    }
+                }
+                cursor.close();
+            }
+        }
+        return data;
     }
 }
