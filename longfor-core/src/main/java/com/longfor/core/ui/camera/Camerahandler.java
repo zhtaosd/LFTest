@@ -19,9 +19,6 @@ import com.longfor.core.delegates.PermissionCheckerDelegate;
 import com.longfor.core.utils.file.FileUtil;
 
 import java.io.File;
-import java.lang.ref.ReferenceQueue;
-
-import retrofit2.http.DELETE;
 
 /**
  * Created by zhanghaitao1 on 2018/1/24.
@@ -31,7 +28,7 @@ public class Camerahandler implements View.OnClickListener{
     private final AlertDialog DIALOG;
     private final PermissionCheckerDelegate DELEGATE;
 
-    public Camerahandler(AlertDialog dialog, PermissionCheckerDelegate delegate) {
+    public Camerahandler(PermissionCheckerDelegate delegate) {
         this.DELEGATE = delegate;
         DIALOG = new AlertDialog.Builder(delegate.getContext()).create();
     }
